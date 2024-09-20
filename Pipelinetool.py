@@ -28,7 +28,7 @@ def process_pipeline_data(input_file):
 
     # Prepare a DataFrame for Organic Gains
     column_names = [
-        'SalesOrgCode', 'DivCode', 'ProfitCenter', 'CustomerCode',
+        'SalesOrgCode', 'DivCode', 'ProfitCenterCode', 'CustomerCode',
         'SalesDistrictCode', 'SalesRepName', 'CurrencyCode', 
         'SalesYear', 'Estimated_Organic_Gains', 'Estimated_Losses', 'Comments'
     ]
