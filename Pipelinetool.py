@@ -68,6 +68,7 @@ def process_pipeline_data(input_file):
 
     # Concatenate the two DataFrames
     final_df = pd.concat([new_data, new_data1], ignore_index=True)
+    final_df= final_df.drop_duplicates()
 
     return final_df
 
