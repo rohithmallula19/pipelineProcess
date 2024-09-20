@@ -5,49 +5,6 @@ import warnings
 # Suppress warnings
 warnings.filterwarnings("ignore")
 
-# Streamlit application
-st.set_page_config(page_title="Pipeline Review Data Processing", layout="wide")
-st.title("📊 Pipeline Review Data Processing")
-
-# Upload section
-st.header("Upload Excel Files")
-input_files = st.file_uploader("Upload Excel files", type=["xlsx"], accept_multiple_files=True)
-
-# Process button
-if st.button("Process Data"):
-    if input_files:
-        all_final_df = pd.DataFrame()  # Initialize an empty DataFrame
-        download_links = []  # Initialize list to store download links
-
-        for input_file in input_files:
-            final_df = process_pipeline_data(input_file)
-            all_final_df = pd.concat([all_final_df, final_df], ignore_index=True)  # Concatenate results
-            
-            # Save each file's final_df to a CSV file
-            output_file = f"{input_file.name}_output.csv"
-            final_df.to_csv(output_file, index=False)
-
-            # Add the download link for the current file's final_df
-            download_links.append((input_file.name, output_file))
-
-        # Save the final DataFrame to a CSV file
-        overall_output_file = "final_output.csv"
-        all_final_df.to_csv(overall_output_file, index=False)
-
-        st.success("Data processed successfully!")
-
-        # Provide a download link for each processed file
-        st.header("Download Processed Files")
-        for original_file_name, output_file in download_links:
-            with open(output_file, "rb") as file:
-                st.download_button(label=f"Download {original_file_name} Output CSV", data=file, file_name=output_file)
-
-        # Provide a download link for the overall output
-        with open(overall_output_file, "rb") as file:
-            st.download_button(label="Download Overall Output CSV", data=file, file_name=overall_output_file)
-    else:
-        st.error("Please upload at least one Excel file.")
-
 # Function to process the pipeline data
 def process_pipeline_data(input_file):
     # Read the Excel file and specify the sheet and header row
@@ -116,3 +73,48 @@ def process_pipeline_data(input_file):
 
 # To run this application, use the command:
 # streamlit run your_script.py
+
+
+# Streamlit application
+st.set_page_config(page_title="Pipeline Review Data Processing", layout="wide")
+st.title("📊 Pipeline Review Data Processing")
+
+# Upload section
+st.header("Upload Excel Files")
+input_files = st.file_uploader("Upload Excel files", type=["xlsx"], accept_multiple_files=True)
+
+# Process button
+if st.button("Process Data"):
+    if input_files:
+        all_final_df = pd.DataFrame()  # Initialize an empty DataFrame
+        download_links = []  # Initialize list to store download links
+
+        for input_file in input_files:
+            final_df = process_pipeline_data(input_file)
+            all_final_df = pd.concat([all_final_df, final_df], ignore_index=True)  # Concatenate results
+            
+            # Save each file's final_df to a CSV file
+            output_file = f"{input_file.name}_output.csv"
+            final_df.to_csv(output_file, index=False)
+
+            # Add the download link for the current file's final_df
+            download_links.append((input_file.name, output_file))
+
+        # Save the final DataFrame to a CSV file
+        overall_output_file = "final_output.csv"
+        all_final_df.to_csv(overall_output_file, index=False)
+
+        st.success("Data processed successfully!")
+
+        # Provide a download link for each processed file
+        st.header("Download Processed Files")
+        for original_file_name, output_file in download_links:
+            with open(output_file, "rb") as file:
+                st.download_button(label=f"Download {original_file_name} Output CSV", data=file, file_name=output_file)
+
+        # Provide a download link for the overall output
+        with open(overall_output_file, "rb") as file:
+            st.download_button(label="Download Overall Output CSV", data=file, file_name=overall_output_file)
+    else:
+        st.error("Please upload at least one Excel file.")
+
