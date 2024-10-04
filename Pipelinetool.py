@@ -11,7 +11,7 @@ def process_pipeline_data(input_file):
     df = pd.read_excel(input_file, sheet_name="1) Base Business", header=3)
 
     # Select specific columns from the DataFrame (A:J and AJ:AL)
-    df = df.iloc[:, list(range(10)) + [34, 35, 36, 37, 38, 39, 40, 41]]
+    df = df.iloc[:, list(range(10)) + [52,53,54,55,56,57,58,59]]
 
     # Rename columns for easier access
     df = df.rename(columns={
