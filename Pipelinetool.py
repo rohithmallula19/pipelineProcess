@@ -39,7 +39,7 @@ def process_pipeline_data(input_file):
     new_data['SalesYear'] = ['2024'] * len(organic_gains_filtered)
     new_data['Estimated_Organic_Gains'] = organic_gains_filtered['Estimated_Organic_Gains'].values
     new_data['Estimated_Losses'] = organic_gains_filtered['Estimated_Losses'].values
-    new_data['Comments'] = organic_gains_filtered['Comments (For September Review)'].values
+    new_data['Comments'] = organic_gains_filtered['Comments (For September Review).1'].values
 
     # Filter for rows with valid Estimated Losses
     loss_filtered = df[
