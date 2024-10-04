@@ -14,11 +14,7 @@ def process_pipeline_data(input_file):
     df = df.iloc[:, list(range(10)) + [52,53,54,55,56,57,58,59]]
 
     # Rename columns for easier access
-    df = df.rename(columns={
-        "2024 NTS $.6": "Estimated_Organic_Gains",
-        "2024 NTS $.7": "Estimated_Losses"
-    })
-
+    df=df.rename(columns={"2024 NTS $.9": "Estimated_Organic_Gains", "2024 NTS $.10": "Estimated_Losses"})
     # Filter for rows with valid Estimated Organic Gains
     organic_gains_filtered = df[
         df["Estimated_Organic_Gains"].notna() & 
