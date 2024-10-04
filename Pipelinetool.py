@@ -60,7 +60,7 @@ def process_pipeline_data(input_file):
     new_data1['SalesYear'] = ['2024'] * len(loss_filtered)
     new_data1['Estimated_Organic_Gains'] = loss_filtered['Estimated_Organic_Gains'].values
     new_data1['Estimated_Losses'] = loss_filtered['Estimated_Losses'].values
-    new_data1['Comments'] = loss_filtered['Comments (For September Review)'].values
+    new_data1['Comments'] = loss_filtered['Comments (For September Review).1'].values
 
     # Concatenate the two DataFrames
     final_df = pd.concat([new_data, new_data1], ignore_index=True)
